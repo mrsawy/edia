@@ -46,7 +46,18 @@ const PickQuestionDialog: React.FC = () => {
             playSound("/mp3/w2.mp3")
 
             celebrate();
-
+            Swal.fire({
+                title: "أحسنت !",
+                text: "إجابة صحيحة",
+                imageUrl: "/images/c1.gif",
+                imageWidth: 400,
+                imageHeight: 400,
+                imageAlt: "Custom image",
+                showCancelButton: false,
+                showConfirmButton: false,
+                timer: 5000,
+                cancelButtonText: "إغلاق"
+            });
 
         } else {
             closeQuestionsDialog();

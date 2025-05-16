@@ -30,7 +30,14 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full fullscreen-bg" 
+    // style={{
+    //   backgroundImage: `url(${bg1.src})`,
+    //   backgroundRepeat: "no-repeat",
+    //   backgroundSize: "cover",
+    //   // backgroundPosition: "top"
+    // }}
+    >
       <div className="flex  flex-row-reverse">
         <button
           onClick={handleStartSound}
