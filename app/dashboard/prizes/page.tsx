@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 const Prizes: React.FC = () => {
     const { data, isSuccess } = usePrizes()
     return (
-        < div className="w-full">
+        < div className="w-full" style={{ direction: "rtl" }}>
             <div className="flex items-center w-full justify-center p-9">
                 <PrizeDialog />
             </div>

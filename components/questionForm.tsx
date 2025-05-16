@@ -23,6 +23,7 @@ import { toast } from "react-toastify";
 
 
 import { useQueryClient } from '@tanstack/react-query';
+import useGeneralStore from "@/lib/stores/generalStore";
 
 type Props = {
     className?: string
@@ -46,6 +47,7 @@ export default function QuestionForm({ className, id, question = "", correct_ans
     async function onSubmit(values: QuestionSchemaType) {
         let response;
         try {
+            useGeneralStore.getState().setIsLoading(true)
             if (id) {
                 response = await axios.put('/api/question/' + id, values);
                 toast.success(ar.question_updated_successfully);
@@ -66,6 +68,8 @@ export default function QuestionForm({ className, id, question = "", correct_ans
             } else {
                 toast.error(ar.something_went_wrong);
             }
+        } finally {
+            useGeneralStore.getState().setIsLoading(false)
         }
     }
     return (

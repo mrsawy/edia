@@ -14,6 +14,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { celebrate, cn, playSound, shuffleArray } from '@/lib/utils';
 import Swal from 'sweetalert2';
+import useGeneralStore from '@/lib/stores/generalStore';
 
 export enum modeEnum {
     single = "single",
@@ -74,6 +75,7 @@ const PickQuestionDialog: React.FC = () => {
     }
     const getRandomQuestion = async () => {
         try {
+            useGeneralStore.getState().setIsLoading(true)
             setMode(modeEnum.single)
             const randomQuestion = (await pickRandomQuestion()) as WithId<QuestionSchemaType>
             setSelectedQuestion(randomQuestion)
@@ -81,11 +83,14 @@ const PickQuestionDialog: React.FC = () => {
         } catch (err) {
             console.log({ err })
             toast.error("حدث خطأ ما")
+        } finally {
+            useGeneralStore.getState().setIsLoading(false)
         }
     }
 
     const getAllQuestions = async () => {
         try {
+            useGeneralStore.getState().setIsLoading(true)
             setMode(modeEnum.list);
             setQuestion(undefined)
             const response = await axios.get("/api/question");
@@ -96,6 +101,8 @@ const PickQuestionDialog: React.FC = () => {
         } catch (err) {
             console.log({ err })
             toast.error("حدث خطأ ما")
+        } finally {
+            useGeneralStore.getState().setIsLoading(false)
         }
     }
 

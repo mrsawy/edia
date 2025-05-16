@@ -1,7 +1,9 @@
 'use client';
 
 import AppSideBar from '@/components/AppSideBar';
+import Loader1 from '@/components/loaders/Loader1';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import useGeneralStore from '@/lib/stores/generalStore';
 import {
   keepPreviousData,
   QueryClient,
@@ -32,12 +34,15 @@ export default function Provider({
   // const [queryClient] = useState(initQueryClient);
   const queryClient = new QueryClient()
 
+  const { isLoading } = useGeneralStore()
+
   return (
     <SidebarProvider style={{ direction: "ltr" }} defaultOpen={false}>
 
       <AppSideBar />
       <QueryClientProvider client={queryClient}>
         <SidebarTrigger className=' text-zinc-50' />
+        {isLoading && <Loader1 />}
         {children}
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

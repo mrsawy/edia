@@ -7,6 +7,7 @@ import Icons from './ui/icons';
 import axios, { AxiosError } from 'axios';
 import { useQueryClient } from '@tanstack/react-query';
 import QuestionDialog, { Emode } from './QuestionDialog';
+import useGeneralStore from '@/lib/stores/generalStore';
 
 const QuestionCard: React.FC<{ question: WithId<Question> }> = ({ question }) => {
 
@@ -28,6 +29,8 @@ const QuestionCard: React.FC<{ question: WithId<Question> }> = ({ question }) =>
         })
         if (result.isConfirmed) {
             try {
+                useGeneralStore.getState().setIsLoading(true)
+
                 const response = await axios.delete(`/api/question/${_id}`);
                 console.log({ response })
                 if (response.status === 200) {
@@ -54,6 +57,8 @@ const QuestionCard: React.FC<{ question: WithId<Question> }> = ({ question }) =>
                         icon: "error"
                     });
                 }
+            } finally {
+                useGeneralStore.getState().setIsLoading(false)
             }
         }
     }

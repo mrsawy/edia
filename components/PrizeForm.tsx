@@ -30,6 +30,7 @@ import {
 
 import { useQueryClient } from '@tanstack/react-query';
 import { PrizeEnum } from "@/lib/types/PrizeType.enum";
+import useGeneralStore from "@/lib/stores/generalStore";
 
 type Props = {
     className?: string
@@ -50,6 +51,8 @@ export default function PrizeForm({ className, id, content = "", prizeType = "" 
     async function onSubmit(values: PrizeSchemaType) {
         let response;
         try {
+            useGeneralStore.getState().setIsLoading(true)
+
             if (id) {
                 response = await axios.put('/api/prize/' + id, values);
                 toast.success(ar.prize_updated_successfully);
@@ -70,6 +73,8 @@ export default function PrizeForm({ className, id, content = "", prizeType = "" 
             } else {
                 toast.error(ar.something_went_wrong);
             }
+        } finally {
+            useGeneralStore.getState().setIsLoading(false)
         }
     }
     return (
