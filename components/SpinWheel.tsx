@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-// @ts-ignore
+// @ts-expect-error" instead
 import { Wheel } from 'spin-wheel';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
@@ -36,7 +36,7 @@ export default function SpinWheel({ className, items = [], buttonText = "" }: Pr
 
 
     const wheelRef = useRef<HTMLDivElement | null>(null);
-    const wheelInstanceRef = useRef<any>(null);
+    const wheelInstanceRef = useRef<Wheel | null>(null);
 
     const [rotationSpeed, setRotationSpeed] = useState(initialRotationSpeed)
 
@@ -60,7 +60,7 @@ export default function SpinWheel({ className, items = [], buttonText = "" }: Pr
             <Button className='bg-zinc-600 cursor-pointer hover:bg-zinc-400 border-2 border-amber-50 text-xl p-7' onClick={() => {
                 console.log(wheelInstanceRef.current)
 
-                if (wheelInstanceRef.current._rotationSpeed > rotationSpeed) {
+                if (wheelInstanceRef.current && wheelInstanceRef.current._rotationSpeed > rotationSpeed) {
                     const newRotationSpeed = wheelInstanceRef.current._rotationSpeed + initialIncreaseState
                     wheelInstanceRef.current?.spin?.(newRotationSpeed);
                     setRotationSpeed(newRotationSpeed);

@@ -1,4 +1,4 @@
-import { object, string, InferType, mixed } from 'yup';
+import { object, string, InferType } from 'yup';
 import ar from "@/lib/translation/ar.json"
 
 export const QuestionSchema = object({

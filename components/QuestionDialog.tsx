@@ -2,12 +2,10 @@ import React from 'react';
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { Button } from '@/components/ui/button';
 import QuestionForm from '@/components/questionForm';
 import ar from "@/lib/translation/ar.json"
 import Icons from './ui/icons';
@@ -31,7 +29,7 @@ type Props = {
 
 
 
-const QuestionDialog: React.FC<Props> = ({ className, id, question = "", correct_answer = "", wrong_answer_1 = "", wrong_answer_2 = "", wrong_answer_3 = "", mode = Emode.Add }) => {
+const QuestionDialog: React.FC<Props> = ({ id, question = "", correct_answer = "", wrong_answer_1 = "", wrong_answer_2 = "", wrong_answer_3 = "", mode = Emode.Add }) => {
     return (<Dialog >
         <DialogTrigger >
             {mode == Emode.Add ? (<div className="bg-zinc-200 cursor-pointer hover:bg-zinc-400 text-4xl rounded-lg text-zinc-800 border-2 duration-200 p-4 flex items-center">

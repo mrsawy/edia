@@ -1,9 +1,9 @@
 import { dbConnect } from "@/lib/dbConnect";
 import Prize from "@/lib/Models/Prize";
-import { PrizeSchema , PrizeSchemaType } from "@/lib/schema";
+import { PrizeSchemaType } from "@/lib/schema";
 import { NextResponse } from "next/server";
 
-export async function DELETE(_: any, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
         const { id } = await params
 

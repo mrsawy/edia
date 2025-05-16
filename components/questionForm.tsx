@@ -1,9 +1,7 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
 import axios from "axios"
 
 import ar from "@/lib/translation/ar.json"
@@ -13,7 +11,6 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,

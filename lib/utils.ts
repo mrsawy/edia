@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function shuffleArray(array: any[]) {
   const arr = [...array]; // make a copy to avoid mutating original
   for (let i = arr.length - 1; i > 0; i--) {
@@ -20,7 +20,7 @@ export function shuffleArray(array: any[]) {
 export const celebrate = () => {
   (() => {
 
-    var defaults = {
+    const defaults = {
       spread: 360,
       ticks: 50,
       gravity: 0,
@@ -50,22 +50,22 @@ export const celebrate = () => {
   })()
 
 
-  var duration = 15 * 1000;
-  var animationEnd = Date.now() + duration;
-  var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+  const duration = 15 * 1000;
+  const animationEnd = Date.now() + duration;
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
   function randomInRange(min: number, max: number) {
     return Math.random() * (max - min) + min;
   }
 
-  var interval = setInterval(function () {
-    var timeLeft = animationEnd - Date.now();
+  const interval = setInterval(function () {
+    const timeLeft = animationEnd - Date.now();
 
     if (timeLeft <= 0) {
       return clearInterval(interval);
     }
 
-    var particleCount = 50 * (timeLeft / duration);
+    const particleCount = 50 * (timeLeft / duration);
     // since particles fall down, start a bit higher than random
     confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
     confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
@@ -76,10 +76,10 @@ export const celebrate = () => {
 
 
 
-  var end = Date.now() + (15 * 1000);
+  const end = Date.now() + (15 * 1000);
 
   // go Buckeyes!
-  var colors = ['#bb0000', '#ffffff'];
+  const colors = ['#bb0000', '#ffffff'];
 
   (function frame() {
     confetti({
@@ -103,14 +103,14 @@ export const celebrate = () => {
   }());
 
 
-  var duration = 15 * 1000;
-  var animationEnd = Date.now() + duration;
-  var skew = 1;
 
 
   (function frame() {
-    var timeLeft = animationEnd - Date.now();
-    var ticks = Math.max(200, 500 * (timeLeft / duration));
+    const duration = 15 * 1000;
+    const animationEnd = Date.now() + duration;
+    let skew = 1;
+    const timeLeft = animationEnd - Date.now();
+    const ticks = Math.max(200, 500 * (timeLeft / duration));
     skew = Math.max(0.8, skew - 0.001);
 
     confetti({

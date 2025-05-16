@@ -1,9 +1,7 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
 import axios from "axios"
 
 import ar from "@/lib/translation/ar.json"
@@ -13,22 +11,19 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { PrizeSchema, PrizeSchemaType, QuestionSchema, QuestionSchemaType } from "@/lib/schema";
+import { PrizeSchema, PrizeSchemaType } from "@/lib/schema";
 import { cn } from "@/lib/utils";
 import { toast } from "react-toastify";
 import {
     Select,
     SelectContent,
-    SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"

@@ -20,11 +20,11 @@ const Prizes: React.FC = () => {
             <div className="flex justify-around">
                 <div className="flex flex-col">
                     <h1 className="my-4 text-zinc-100 border-2 rounded-md p-5 text-xl">جوائز عجلة الإجابات الصحيحة</h1>
-                    {data && isSuccess && data.data.filter(p => p.prizeType == PrizeEnum.correct).map((prize) => (<PrizeCard prize={prize} />))}
+                    {data && isSuccess && data.data.filter(p => p.prizeType == PrizeEnum.correct).map((prize, i) => (<PrizeCard key={i} prize={prize} />))}
                 </div>
                 <div className="flex flex-col">
                     <h1 className="my-4 text-zinc-100 border-2 rounded-md p-5 text-xl">جوائز عجلة الإجابات الخاطئة</h1>
-                    {data && isSuccess && data.data.filter(p => p.prizeType == PrizeEnum.wrong).map((prize) => (<PrizeCard prize={prize} />))}
+                    {data && isSuccess && data.data.filter(p => p.prizeType == PrizeEnum.wrong).map((prize, i) => (<PrizeCard key={i} prize={prize} />))}
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@ const PrizeCard = ({ prize }: { prize: WithId<PrizeSchemaType> }) => {
             }
         }
     }
-    return <div className="w-full flex justify-between"  style={{direction:"rtl"}}>
+    return <div className="w-full flex justify-between" style={{ direction: "rtl" }}>
 
         <div className="text-zinc-50 text-2xl max-w-xs w-full">{prize.content}</div>
         <Icons.delete onClick={() => deleteHandler(prize._id)} className="mr-2 !h-7 w-7! cursor-pointer" />

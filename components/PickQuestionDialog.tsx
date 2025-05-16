@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -15,8 +14,6 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { celebrate, cn, playSound, shuffleArray } from '@/lib/utils';
 import Swal from 'sweetalert2';
-import confetti from "canvas-confetti"
-// import loseSound from "@/public/mp3/1.mp3"
 
 export enum modeEnum {
     single = "single",
@@ -27,13 +24,9 @@ export enum answerEnum {
     wrong = "wrong"
 }
 
-type Props = {
-    className?: string
-    id?: string
-}
 type Answer = { answer: string, type: answerEnum, key: number }
 
-const PickQuestionDialog: React.FC<Props> = ({ className, id }) => {
+const PickQuestionDialog: React.FC = () => {
     const [question, setQuestion] = useState<WithId<QuestionSchemaType> | undefined>();
     const [allQuestions, setAllQuestions] = useState<WithId<QuestionSchemaType>[] | undefined>();
     const [mode, setMode] = useState<modeEnum>(modeEnum.single);
@@ -41,7 +34,7 @@ const PickQuestionDialog: React.FC<Props> = ({ className, id }) => {
     const [selectedAnswer, setSelectedAnswer] = useState<Answer>()
     const [isOpen, setIsOpen] = useState(false);
 
-    const openQuestionDialog = () => setIsOpen(true);
+    // const openQuestionDialog = () => setIsOpen(true);
     const closeQuestionsDialog = () => setIsOpen(false);
     // const [questionDialogOpen, setQuestionDialogpen] = useState(true)
     const checkAnswer = ({ answer }: { answer: Answer }) => {
@@ -86,6 +79,7 @@ const PickQuestionDialog: React.FC<Props> = ({ className, id }) => {
             setSelectedQuestion(randomQuestion)
             console.log({ randomQuestion })
         } catch (err) {
+            console.log({ err })
             toast.error("حدث خطأ ما")
         }
     }
@@ -100,14 +94,14 @@ const PickQuestionDialog: React.FC<Props> = ({ className, id }) => {
 
             console.log({ allQuestions })
         } catch (err) {
+            console.log({ err })
             toast.error("حدث خطأ ما")
         }
     }
 
     return (<Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogTrigger >
-            <div className="bg-zinc-200 cursor-pointer hover:bg-zinc-400 text-4xl rounded-lg text-zinc-800 border-2 duration-200 p-4 flex items-center max-w-md m-auto text-center  justify-center mt-14">
-                عرض سؤال جديد            </div>
+        <DialogTrigger className="bg-zinc-200 cursor-pointer hover:bg-zinc-400 text-4xl rounded-lg text-zinc-800 border-2 duration-200 p-4 flex items-center max-w-md m-auto text-center  justify-center mt-14" >
+            عرض سؤال جديد
         </DialogTrigger>
         <DialogContent>
             <DialogHeader>
@@ -120,7 +114,7 @@ const PickQuestionDialog: React.FC<Props> = ({ className, id }) => {
 
 
                 {allQuestions && allQuestions.length > 0 && mode == modeEnum.list && <div className='w-full border border-zinc-800'>
-                    {allQuestions.map(q => (<div className='p-3 border-b-2 border-zinc-800 cursor-pointer hover:bg-zinc-200' onClick={() => { setSelectedQuestion(q); setMode(modeEnum.single); }}>{q.question}</div>))}
+                    {allQuestions.map((q, i) => (<div key={i} className='p-3 border-b-2 border-zinc-800 cursor-pointer hover:bg-zinc-200' onClick={() => { setSelectedQuestion(q); setMode(modeEnum.single); }}>{q.question}</div>))}
                 </div>}
 
 
@@ -128,8 +122,8 @@ const PickQuestionDialog: React.FC<Props> = ({ className, id }) => {
                 {question && mode == modeEnum.single && (
                     <div className='w-full border border-zinc-800'>
                         <div className='p-3 border-b-2 border-zinc-800 bg-neutral-800 text-zinc-50'>{question.question}</div>
-                        {answers && answers.map(answer => {
-                            return <div onClick={() => { setSelectedAnswer(answer) }}
+                        {answers && answers.map((answer, i) => {
+                            return <div key={i} onClick={() => { setSelectedAnswer(answer) }}
                                 className={cn('p-3 border-b-2 border-zinc-800 hover:bg-zinc-200 cursor-pointer',
                                     selectedAnswer && selectedAnswer.answer == answer.answer && selectedAnswer.key == answer.key && "!bg-zinc-400",
 
@@ -138,7 +132,7 @@ const PickQuestionDialog: React.FC<Props> = ({ className, id }) => {
                     </div>)}
 
 
-                {selectedAnswer && <div className='flex justify-center'>
+                {selectedAnswer && mode == modeEnum.single && <div className='flex justify-center'>
                     <Button className='px-12 py-4 m-auto text-lg cursor-pointer' type='button' onClick={() => { checkAnswer({ answer: selectedAnswer }) }}>تأكيد</Button>
                 </div>
                 }

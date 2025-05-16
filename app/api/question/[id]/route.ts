@@ -3,7 +3,7 @@ import Question from "@/lib/Models/Question";
 import { QuestionSchemaType } from "@/lib/schema";
 import { NextResponse } from "next/server";
 
-export async function DELETE(_: any, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
         const { id } = await params
 

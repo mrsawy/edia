@@ -1,8 +1,7 @@
 import axios from "axios";
-import { Question } from "../types/Question";
 import { WithId } from "../types/WithId";
 
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery} from '@tanstack/react-query';
 import { PrizeSchemaType } from "../schema";
 
 const fetchPrizes = async () => {

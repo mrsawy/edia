@@ -10,11 +10,11 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Gift, HelpCircle } from "lucide-react";
+import { Gift, HelpCircle, HomeIcon } from "lucide-react";
 
 
 
-const items = [{ title: "تحكم في الجوائز", url: "/dashboard/prizes", icon: Gift }, { title: "تحكم في الأسئلة", url: "/dashboard/questions", icon: HelpCircle }]
+const items = [{ title: "الصفحة الرئيسية", url: "/", icon: HomeIcon }, { title: "تحكم في الجوائز", url: "/dashboard/prizes", icon: Gift }, { title: "تحكم في الأسئلة", url: "/dashboard/questions", icon: HelpCircle }]
 
 const AppSideBar: React.FC = () => {
     return (<Sidebar >

@@ -15,7 +15,7 @@ const Dashboard: React.FC = () => {
             <div className='mb-14'>
                 <QuestionDialog mode={Emode.Add} />
             </div>
-            {isSuccess && data && data.data.map((question) => <QuestionCard question={question} />)}
+            {isSuccess && data && data.data.map((question ,i) => <QuestionCard key={i} question={question} />)}
         </div>
     );
 };

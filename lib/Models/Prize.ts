@@ -1,5 +1,4 @@
 import mongoose, { Schema } from 'mongoose';
-import { PrizeEnum } from '../types/PrizeType.enum';
 
 const PrizeSchema: Schema = new Schema(
     {

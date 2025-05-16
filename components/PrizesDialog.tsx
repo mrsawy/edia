@@ -2,13 +2,10 @@ import React from 'react';
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { Button } from '@/components/ui/button';
-import QuestionForm from '@/components/questionForm';
 import ar from "@/lib/translation/ar.json"
 import Icons from './ui/icons';
 import PrizeForm from './PrizeForm';
@@ -29,7 +26,7 @@ type Props = {
 
 
 
-const PrizeDialog: React.FC<Props> = ({ className, id, content = "", prizeType = "", mode = Emode.Add }) => {
+const PrizeDialog: React.FC<Props> = ({  id, content = "", prizeType = "", mode = Emode.Add }) => {
     return (<Dialog  >
         <DialogTrigger style={{direction:"rtl"}} >
             {mode == Emode.Add ? (<div className="bg-zinc-200 cursor-pointer hover:bg-zinc-400 text-4xl rounded-lg text-zinc-800 border-2 duration-200 p-4 flex items-center">

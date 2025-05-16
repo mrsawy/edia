@@ -1,6 +1,6 @@
 import { dbConnect } from "@/lib/dbConnect";
 import Prize from "@/lib/Models/Prize";
-import { PrizeSchema, PrizeSchemaType, QuestionSchema, QuestionSchemaType } from "@/lib/schema";
+import { PrizeSchema, PrizeSchemaType } from "@/lib/schema";
 import { NextResponse } from "next/server";
 import * as yup from "yup";
 
