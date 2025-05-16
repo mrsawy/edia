@@ -118,7 +118,7 @@ const PickQuestionDialog: React.FC = () => {
     }
 
     return (<Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogTrigger className="bg-zinc-200 cursor-pointer hover:bg-zinc-400 text-4xl rounded-lg text-zinc-800 border-2 duration-200 p-4 flex items-center max-w-md m-auto text-center  justify-center mt-14" >
+        <DialogTrigger className="bg-zinc-200 cursor-pointer hover:bg-zinc-400 text-4xl rounded-lg text-zinc-800 duration-200 p-4 px-12 flex items-center max-w-md m-auto text-center  justify-center mt-14 border-8 border-zinc-900" >
             عرض سؤال جديد
         </DialogTrigger>
         <DialogContent>
