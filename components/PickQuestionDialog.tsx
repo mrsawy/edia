@@ -53,9 +53,9 @@ const PickQuestionDialog: React.FC = () => {
                 imageWidth: 400,
                 imageHeight: 400,
                 imageAlt: "Custom image",
-                showCancelButton: false,
+                showCancelButton: true,
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 15000,
                 cancelButtonText: "إغلاق"
             });
 
